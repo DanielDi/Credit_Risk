@@ -27,7 +27,7 @@ def peso_to_dollar(value: float) -> float:
 
 def read_feather_db() -> pd.DataFrame:
     bucket = Bucket()
-    df = bucket._load_mini_db()
+    df = bucket.load_mini_db()
     df = df.drop(columns=["index"], axis=1)
     clipped_df = remove_extreme_outliers(df)
     return clipped_df

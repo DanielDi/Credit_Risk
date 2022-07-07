@@ -1,4 +1,4 @@
-import joblib
+# import joblib
 from typing import Tuple
 from models.enums import LoanStatus
 from models.predictive_model import PredictiveModel
@@ -32,8 +32,8 @@ class RandomForest(PredictiveModel):
 
     def _load_model(self) -> None:
         bucket = Bucket()
-        self._reg_model = bucket._load_reg_model()
-        self._clas_model = bucket._load_clas_model()
+        self._reg_model = bucket.load_reg_model()
+        self._clas_model = bucket.load_clas_model()
         # self._reg_model = joblib.load(self.REGRESSION_FILENAME)
         # self._clas_model = joblib.load(self.CLASSIFIER_FILENAME)
 

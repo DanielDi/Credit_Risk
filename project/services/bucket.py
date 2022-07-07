@@ -15,7 +15,7 @@ class Bucket():
     S3_CLIENT = boto3.client('s3', aws_access_key_id=AWS_ID,
                      aws_secret_access_key=AWS_SECRET)
 
-    def _load_reg_model(self):
+    def load_reg_model(self):
         with tempfile.TemporaryFile() as fp:
             reg_key = 'rf_score_reg.joblib'
             self.S3_CLIENT.download_fileobj(Fileobj=fp, Bucket=self.BUCKET_NAME, Key=reg_key)
@@ -23,7 +23,7 @@ class Bucket():
             reg_model = joblib.load(fp)
         return reg_model
     
-    def _load_clas_model(self):
+    def load_clas_model(self):
         with tempfile.TemporaryFile() as fp:
             clas_key = 'rf_loan_clas.joblib'
             self.S3_CLIENT.download_fileobj(Fileobj=fp, Bucket=self.BUCKET_NAME, Key=clas_key)
@@ -31,7 +31,7 @@ class Bucket():
             clas_model = joblib.load(fp)
         return clas_model
 
-    def _load_mini_db(self):
+    def load_mini_db(self):
         with tempfile.TemporaryFile() as fp:
             clas_key = 'mini_db.feather'
             self.S3_CLIENT.download_fileobj(Fileobj=fp, Bucket=self.BUCKET_NAME, Key=clas_key)
